@@ -18,17 +18,11 @@ A comprehensive AI-powered platform designed for students and professionals to m
 - Activity synchronization across platforms
 - Performance insights and trends
 
-### 🧠 **Mental Wellness Coach**
-- AI-powered mental health assistant
-- Mood tracking and analysis
-- Stress management techniques
-- Professional psychologist recommendations (Premium)
+### 🧠 **AI Career Companion**
+- AI-powered career guidance
+- Career path planning
+- Skill development guidance
 
-### 💪 **Physical Wellness Coach**
-- BMI calculation and health metrics
-- Food analysis through image recognition
-- Personalized diet and exercise plans
-- Certified trainer connections (Premium)
 
 ### 🗺️ **Career Roadmaps**
 - Interactive career path planning
@@ -39,66 +33,75 @@ A comprehensive AI-powered platform designed for students and professionals to m
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js (v16 or higher)
-- PostgreSQL database
-- Git
+- **Node.js**: v18 or higher (v20+ recommended)
+- **PostgreSQL**: v14 or higher
+- **Git**
 
 ### Installation
 
-1. **Clone the repository**
-```bash
-git clone <your-repo-url>
-cd aura-synergy-hub-55
-```
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/revanthkumar96/vrx.ai.git
+    cd vrx.ai
+    ```
 
-2. **Quick Start (Windows)**
-```bash
-# Double-click to start both servers
-START_SERVERS.bat
-```
+2.  **Quick Start (Windows)**
+    Double-click the `START_SERVERS.bat` file in the root directory to start both backend and frontend servers automatically.
 
-3. **Manual Setup**
+3.  **Manual Setup**
 
-**Backend Setup:**
-```bash
-cd backend
-npm install
-npm start
-```
+    **Backend Setup:**
+    ```bash
+    cd backend
+    # Install dependencies
+    npm install
+    
+    # Configure environment
+    cp .env.example .env
+    # Edit .env with your credentials
+    
+    # Start the server
+    npm start
+    ```
 
-**Frontend Setup:**
-```bash
-cd Frontend
-npm install
-npm run dev
-```
+    **Frontend Setup:**
+    ```bash
+    cd Frontend
+    # Install dependencies
+    npm install
+    
+    # Configure environment
+    cp .env.example .env
+    
+    # Start the development server
+    npm run dev
+    ```
 
 ### Access the Application
-- **Frontend**: http://localhost:8080
+- **Frontend**: http://localhost:8080 (or port shown in terminal)
 - **Backend API**: http://localhost:3001
 - **Health Check**: http://localhost:3001/health
 
 ## 🏗️ Project Architecture
 
 ```
-aura-synergy-hub-55/
-├── Frontend/                    # React + TypeScript Application
+vrx.ai/
+├── Frontend/           # React + TypeScript + Vite Application
 │   ├── src/
-│   │   ├── components/         # Reusable UI components
-│   │   ├── pages/             # Main application pages
-│   │   ├── lib/               # API client and utilities
-│   │   └── styles/            # CSS and styling
-│   ├── public/                # Static assets
-│   └── package.json           # Frontend dependencies
+│   │   ├── components/ # Reusable UI components (shadcn/ui)
+│   │   ├── pages/      # Main application routes
+│   │   ├── lib/        # Utilities and hooks
+│   │   └── styles/     # Tailwind CSS configuration
+│   └── ...
 │
-├── backend/                    # Node.js + Express API
-│   ├── routes/                # API endpoints
-│   ├── services/              # Business logic
-│   ├── config/                # Database configuration
-│   ├── middleware/            # Authentication & validation
-│   └── migrations/            # Database migrations
+├── backend/            # Express.js Application
+│   ├── routes/         # API Route definitions
+│   ├── services/       # Business logic & External APIs
+│   ├── config/         # DB & App configuration
+│   ├── middleware/     # Auth & Error handling
+│   └── migrations/     # Database schema scripts
 │
-└── START_SERVERS.bat          # Quick start script
+└── START_SERVERS.bat   # Windows Startup Script
 ```
 
 ## 🛠️ Technology Stack
@@ -106,100 +109,41 @@ aura-synergy-hub-55/
 ### Frontend
 - **Framework**: React 18 with TypeScript
 - **Build Tool**: Vite
-- **Styling**: Tailwind CSS + shadcn/ui
-- **State Management**: React Hooks + Context API
-- **HTTP Client**: Custom API wrapper
+- **Styling**: Tailwind CSS, shadcn/ui
+- **State Management**: React Query, React Context
+- **Routing**: React Router DOM
 
 ### Backend
 - **Runtime**: Node.js
 - **Framework**: Express.js
-- **Database**: PostgreSQL
-- **Authentication**: JWT tokens
-- **Web Scraping**: Puppeteer
-- **AI Integration**: OpenAI API
-
-### Database Schema
-- **Users & Profiles**: Authentication and user data
-- **Coding Stats**: Platform statistics and progress
-- **Activity Tracking**: Daily progress and goals
-- **Roadmap System**: Career paths and milestones
-- **Health Metrics**: Physical and mental wellness data
+- **Database**: PostgreSQL (via `pg`)
+- **AI/ML**: @huggingface/inference, groq-sdk, OpenAI
+- **Web Scraping**: Puppeteer, Cheerio
+- **Authentication**: JWT, bcrypt
 
 ## 🔧 Configuration
 
 ### Environment Variables
-Create `.env` files in both `Frontend/` and `backend/` directories:
+You must verify your `.env` files in both directories.
 
 **Backend (.env):**
-```env
-DATABASE_URL=your_postgresql_connection_string
-JWT_SECRET=your_jwt_secret
-OPENAI_API_KEY=your_openai_api_key
-PORT=3001
-```
+See `backend/.env.example` for reference.
+- `DATABASE_URL`: Connection string for PostgreSQL (e.g., Aiven, Supabase, or local).
+- `JWT_SECRET`: Secret key for session management.
+- `OPENAI_API_KEY`: For AI features.
 
 **Frontend (.env):**
-```env
-VITE_API_BASE_URL=http://localhost:3001/api
-```
-
-## 📱 Key Pages
-
-1. **Dashboard** - Overview of all metrics and progress
-2. **Day Tracker** - Daily activity and goal management
-3. **Mental Coach** - AI-powered wellness assistance
-4. **Physical Coach** - Health metrics and coaching
-5. **Roadmaps** - Career planning and milestone tracking
-
-## 🎨 UI Components
-
-- **Modern Design**: Clean, responsive interface
-- **Dark/Light Mode**: Automatic theme switching
-- **Interactive Charts**: Progress visualization
-- **Real-time Updates**: Live data synchronization
-- **Mobile Responsive**: Works on all devices
-
-## 🔐 Security Features
-
-- JWT-based authentication
-- Secure API endpoints
-- Input validation and sanitization
-- CORS protection
-- Environment variable protection
-
-## 📊 Data Sources
-
-- **LeetCode**: Problem solving statistics
-- **CodeChef**: Contest participation and ratings
-- **Codeforces**: Competitive programming metrics
-- **Manual Input**: Goals, health metrics, activities
-
-## 🚀 Deployment
-
-The application is ready for deployment on:
-- **Frontend**: Netlify, Vercel, or any static hosting
-- **Backend**: Heroku, Railway, or any Node.js hosting
-- **Database**: PostgreSQL on Heroku, Supabase, or similar
+See `Frontend/.env.example` for reference.
+- `VITE_API_BASE_URL`: URL of your backend API.
 
 ## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to get started.
 
 ## 📄 License
-
 This project is licensed under the MIT License.
 
 ## 🆘 Support
-
-For support and questions:
-- Check the application's built-in help sections
-- Review the API documentation at `/health`
-- Contact the development team
+For support, please create an issue on the [GitHub repository](https://github.com/revanthkumar96/vrx.ai).
 
 ---
-
 **Built with ❤️ for student success and holistic wellness**
