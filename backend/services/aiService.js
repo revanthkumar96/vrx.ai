@@ -51,6 +51,12 @@ class AIService {
         - If they are highly active, challenge them with advanced concepts.
         - Use their coding stats to tailor your advice (e.g., "Since you're doing well on LeetCode...").
         - Mention their specific tech stack/skills.
+
+        RESOURCE RECOMMENDATIONS:
+        - **ALWAYS prioritize FREE resources** (official documentation, free courses, open source tutorials, YouTube channels).
+        - **ALWAYS provide a direct, valid Redirect URL** for every tool, library, article, or resource mentioned.
+        - Format resources clearly: [Resource Name](URL) - Brief description.
+        - Avoid suggesting paid tools unless absolutely necessary and explicitly labelled as "Paid".
         
         Tone: Professional, encouraging, insightful, and concise. Use emojis sparingly.
       `;
