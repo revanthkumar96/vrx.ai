@@ -36,17 +36,40 @@ router.post('/chat', authenticateToken, async (req, res) => {
     const userResult = await client.query(userContextQuery, [userId]);
     const userData = userResult.rows[0] || {};
 
-    // 2. Prepare Context for AI
+    // 2. Fetch Chat History (Last 10 interactions)
+    const historyQuery = `
+      SELECT message as user_message, response as ai_response 
+      FROM chat_history 
+      WHERE user_id = $1 
+      ORDER BY created_at DESC 
+      LIMIT 10
+    `;
+    const historyResult = await client.query(historyQuery, [userId]);
+    
+    // Format history for AI (reverse chronological order from DB needs to be reversed back to chronological)
+    const dbHistory = historyResult.rows.reverse().flatMap(row => [
+      { role: 'user', content: row.user_message },
+      { role: 'assistant', content: row.ai_response }
+    ]);
+
+    // 3. Prepare Context for AI
     const careerContext = {
       ...userData,
-      history: context?.history || []
+      history: [...dbHistory, ...(context?.history || [])] // Retrieve DB history + client items if any
     };
     
     console.log('💼 Processing career chat for:', userData.name);
 
-    // 3. Generate Response
+    // 4. Generate Response
     const chatResponse = await AIService.generateCareerCompanionChatResponse(message, careerContext);
     
+    // 5. Save Interaction to Database
+    const saveChatQuery = `
+      INSERT INTO chat_history (user_id, message, response) 
+      VALUES ($1, $2, $3)
+    `;
+    await client.query(saveChatQuery, [userId, message, chatResponse]);
+
     res.json({
       success: true,
       response: chatResponse,
